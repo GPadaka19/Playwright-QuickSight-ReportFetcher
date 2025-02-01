@@ -35,4 +35,8 @@ test('Manual CAPTCHA & MFA Test with AWS Login', async ({ page }) => {
     // Pastikan halaman sudah berada di URL yang diinginkan
     await page.waitForURL('https://learnerhub.skillbuilder.aws/quicksight');
 
+    // Menunggu iframe dengan src yang dinamis
+    const iframeLocator = page.locator('iframe[name*="DASHBOARD-SBARDashboardV3"]');
+    await iframeLocator.waitFor({ state: 'attached' });
+    await iframeLocator.waitFor({ state: 'visible' });
 });
