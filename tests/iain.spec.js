@@ -63,9 +63,6 @@ test('Manual CAPTCHA & MFA Test with AWS Login', async ({ page }) => {
         await frame.getByRole('listitem', { name: 'Talenta IAIN Lhokseumawe' }).getByRole('checkbox').check();
         await page.locator('body').click();
 
-
-        // await page.pause();
-
         // Klik tombol untuk membuka tabel
         await frame.getByRole('button', { name: 'Table, Course Activity' }).click();
 
