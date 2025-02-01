@@ -8,6 +8,9 @@ This project is an automation testing tool based on [Playwright](https://playwri
 
 - Otomatisasi login ke AWS Skill Builder menggunakan AWS Builder ID.
 - Dukungan untuk CAPTCHA dan MFA input manual.
+- Penanganan iframe dinamis yang berisi elemen dashboard.
+- Interaksi otomatis dengan checkbox, tombol, dan input form.
+- Ekspor data ke format CSV.
 
 ## System Requirements  
 
@@ -64,6 +67,20 @@ This project is an automation testing tool based on [Playwright](https://playwri
 ## Important Notes
 
 This project is still under active development and is not fully stable. Contributions, suggestions, and feedback are highly welcome.
+
+
+## 🚀 Roadmap
+
+- [X] Setup environment variables for credentials  
+- [X] Handle CAPTCHA & MFA for AWS login  
+- [X] Click elements within dynamic iframes  
+- [X] Automate download and rename of a single CSV file  
+- [X] Enhance `End date` filtering 
+- [X] Improve error handling and reporting  
+- [ ] Implement filter selection for multiple branches  
+- [ ] Automate CSV download and rename for 8 branches, incorporating a loop mechanism  
+- [ ] Define the download path, ensuring it is saved in the desired location (specifically the Downloads directory on macOS)  
+- [ ] Export test reports in standardized format 
 
 ## License
 
