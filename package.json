@@ -1,0 +1,23 @@
+{
+  "name": "playwright-quicksight-reportfetcher",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GPadaka19/Playwright-QuickSight-ReportFetcher.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/GPadaka19/Playwright-QuickSight-ReportFetcher/issues"
+  },
+  "homepage": "https://github.com/GPadaka19/Playwright-QuickSight-ReportFetcher#readme",
+  "description": "",
+  "devDependencies": {
+    "@playwright/test": "^1.50.1",
+    "@types/node": "^22.13.0"
+  }
+}
