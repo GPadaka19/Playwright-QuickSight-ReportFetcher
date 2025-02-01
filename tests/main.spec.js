@@ -36,54 +36,69 @@ test('Manual CAPTCHA & MFA Test with AWS Login', async ({ page }) => {
     const frame = await iframeLocator.contentFrame();
 
     if (frame) {
-    await frame.locator('span.ellipsis', { hasText: 'Training' }).click();
+        await frame.locator('span.ellipsis', { hasText: 'Training' }).click();
 
-    await frame.locator('role=button[name="Course All"]').click();
+        await frame.locator('role=button[name="Course All"]').click();
 
-    await frame.locator('role=combobox[name="Search value"]').fill('e-05wkr9');
-    await frame.locator('role=button[name="Search"]').click();
+        await frame.locator('role=combobox[name="Search value"]').fill('e-05wkr9');
+        await frame.locator('role=button[name="Search"]').click();
 
-    await frame.locator(
-    'input[aria-labelledby="E-05WKR9 - Cloud Essentials Knowledge Badge Assessment-multiSelectControl-label"]'
-    ).click();
+        await frame.locator(
+            'input[aria-labelledby="E-05WKR9 - Cloud Essentials Knowledge Badge Assessment-multiSelectControl-label"]'
+        ).click();
 
-    await page.locator('body').click();
+        await page.locator('body').click();
 
-    await frame.getByRole('textbox', { name: 'End Date' }).dblclick();
-    await frame.getByRole('textbox', { name: 'End Date' }).fill('');
-    await frame.getByRole('textbox', { name: 'End Date' }).fill('2025/02/02');
-    await frame.getByRole('textbox', { name: 'End Date' }).press('Enter');
+        await frame.getByRole('textbox', { name: 'End Date' }).dblclick();
+        await frame.getByRole('textbox', { name: 'End Date' }).fill('');
+        await frame.getByRole('textbox', { name: 'End Date' }).fill('2025/02/02');
+        await frame.getByRole('textbox', { name: 'End Date' }).press('Enter');
 
-    await page.pause();
-    
-    // Klik tombol untuk membuka tabel
-    await frame.getByRole('button', { name: 'Table, Course Activity' }).click();
+        await page.pause();
+        
+        // Klik tombol untuk membuka tabel
+        await frame.getByRole('button', { name: 'Table, Course Activity' }).click();
 
-    // Hover terlebih dahulu sebelum klik menu options
-    await frame.getByRole('button', { name: 'Menu options, Course Activity' }).hover();
-    await frame.getByRole('button', { name: 'Menu options, Course Activity' }).click();
+        // Hover terlebih dahulu sebelum klik menu options
+        await frame.getByRole('button', { name: 'Menu options, Course Activity' }).hover();
+        await frame.getByRole('button', { name: 'Menu options, Course Activity' }).click();
 
-    // Tunggu event unduhan dan klik tombol Export to CSV
-    const [download] = await Promise.all([
-    page.waitForEvent('download'),
-    frame.getByRole('menuitem', { name: 'Export to CSV' }).click(),
-    ]);
+        // Tunggu event unduhan dan klik tombol Export to CSV
+        const [download] = await Promise.all([
+            page.waitForEvent('download'),
+            frame.getByRole('menuitem', { name: 'Export to CSV' }).click(),
+        ]);
 
-    try {
-      // Lokasi unduhan dan nama file baru
-        const downloadPath = '/Users/gpadaka19/Downloads';
-        const filePath = await download.path();
-        if (filePath) {
-        const targetPath = path.join(downloadPath, 'Universitas1.csv');
-        fs.renameSync(filePath, targetPath);
-        console.log(`File berhasil diunduh dan diubah nama menjadi: ${targetPath}`);
-        } else {
-        console.error('File unduhan tidak ditemukan.');
+        try {
+            // Lokasi unduhan dan nama file baru
+            const downloadPath = '/Users/gpadaka19/Downloads';
+            const filePath = await download.path();
+
+            if (filePath) {
+                const originalFileName = path.basename(filePath); // Nama file asli
+                const targetPath = path.join(downloadPath, 'Universitas1.csv'); // Nama file baru
+                fs.renameSync(filePath, targetPath);
+
+                // Log lebih spesifik dengan nama file dan path yang jelas
+                console.log(`
+                    File berhasil diunduh dari:
+                    ${filePath}
+                    
+                    Kemudian diubah nama dari:
+                    '${originalFileName}'
+                    
+                    Menjadi:
+                    ${targetPath}'
+                    
+                    Dan disimpan di:
+                    ${targetPath}
+                    `);            } else {
+                console.error('File unduhan tidak ditemukan.');
+            }
+        } catch (error) {
+            console.error('Gagal mengunduh atau memproses file:', error);
         }
-    } catch (error) {
-    console.error('Gagal mengunduh atau memproses file:', error);
-    }
     } else {
-    console.error('Iframe tidak ditemukan!');
+        console.error('Iframe tidak ditemukan!');
     }
 });
