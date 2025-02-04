@@ -22,7 +22,6 @@
   },
   "dependencies": {
     "dotenv": "^16.4.7",
-    "otpauth": "^9.3.6",
-    "tesseract.js": "^6.0.0"
+    "otpauth": "^9.3.6"
   }
 }
