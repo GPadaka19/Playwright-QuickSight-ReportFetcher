@@ -48,7 +48,8 @@ test('TOTP', async ({ page }) => {
 //   await page.locator('#awsui-input-2').click();
 //   await page.locator('#awsui-input-2').fill('fpcfs2');
 
-
+  await page.pause();
+  
   await page.getByRole('checkbox', { name: 'This is a trusted device.' }).check();
   await page.getByRole('button', { name: 'Sign in' }).click();
 
@@ -61,3 +62,4 @@ test('TOTP', async ({ page }) => {
 
   await page.getByRole('button', { name: 'Sign in' }).click();
 });
+
